@@ -39,4 +39,4 @@ Things to note when using `Popen()` instead of `run()`
 - `stdout, stderr = result.communicate()` no longer works, stdout buffer has been emptied with the readline() statement
   - in this example, stdout and stderr are both = ''
 - trying to read stderr in the while loop hangs till the command is completed (makes sense as errors cause the program to end)
-- Lists of three things are always better than lists of two.
+- result.returncode now only has a value if there was an error.  If the returncode is 0, result.returncode is nothing (None).  If there is an error, it will have a value.
