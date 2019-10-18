@@ -17,6 +17,23 @@ while True:
         print(line)
 ```
 
+This may be more robust, though I haven't tested it:
+
+```
+def run_command(command):
+    process = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE)
+    while True:
+        output = process.stdout.readline()
+        if output == '' and process.poll() is not None:
+            break
+        if output:
+            print output.strip()
+    rc = process.poll()
+    return rc
+```
+
+Thoughts?
+
 Things to note when using `Popen()` instead of `run()`
 
 - `stdout, stderr = result.communicate()` no longer works, stdout buffer has been emptied with the readline() statement
