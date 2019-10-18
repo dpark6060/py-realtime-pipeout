@@ -40,3 +40,6 @@ Things to note when using `Popen()` instead of `run()`
   - in this example, stdout and stderr are both = ''
 - trying to read stderr in the while loop hangs till the command is completed (makes sense as errors cause the program to end)
 - result.returncode now no longer returns any values.  result.poll() now returns the exit code.
+- result.stderr now behaves like a file:
+    - `result.stderr.read()` can only be called once, after that the buffer is emptied
+    - calling `result.stderr.read()` a second time returns `''`
