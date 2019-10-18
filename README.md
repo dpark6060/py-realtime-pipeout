@@ -39,4 +39,4 @@ Things to note when using `Popen()` instead of `run()`
 - `stdout, stderr = result.communicate()` no longer works, stdout buffer has been emptied with the readline() statement
   - in this example, stdout and stderr are both = ''
 - trying to read stderr in the while loop hangs till the command is completed (makes sense as errors cause the program to end)
-- result.returncode now no longer returns any values.
+- result.returncode now no longer returns any values.  result.poll() now returns the exit code.
